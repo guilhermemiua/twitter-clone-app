@@ -18,5 +18,15 @@ module.exports = {
     } catch (err) {
       return next(err);
     }
+  },
+  async find(req, res, next) {
+    try {
+      const tweets = await Tweet.find().sort('-createdAt');
+
+      return res.json(tweets);
+    }
+    catch(err) {
+      return next(err);
+    }
   }
 };

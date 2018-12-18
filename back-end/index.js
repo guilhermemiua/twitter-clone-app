@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const routes = require("./app/routes");
 const dbConfig = require("./config/database");
+const cors = require("cors");
 
 mongoose.connect(
   dbConfig.url,
@@ -12,6 +13,7 @@ mongoose.connect(
   }
 );
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/api", routes);
 

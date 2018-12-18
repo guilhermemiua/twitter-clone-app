@@ -12,11 +12,12 @@ routes.post("/signin", authController.signin);
 
 // Authenticated routes
 // All the routes above will use the authentication middleware
-routes.use(authMiddleware);
+//routes.use(authMiddleware);
 
 // Tweets
 routes.post("/tweets/create", tweetController.create);
 routes.delete("/tweets/delete/:id", tweetController.destroy);
+routes.get("/tweets/find", tweetController.find);
 
 // Users
 routes.put("/users", userController.update);
