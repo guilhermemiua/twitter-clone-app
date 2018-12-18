@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-//import { loadTweet } from "../../actions/Actions";
+import api from "../../services/api";
+import { loadTweets } from "../../actions/Actions";
 
 class TweetList extends Component {
   componentDidMount() {
-    this.props.loadTweet();
+    api.get("/tweets/find").then(res => {
+      this.props.loadTweets(res.data);
+    });
   }
 
   render() {
@@ -13,7 +16,7 @@ class TweetList extends Component {
     const tweetList = tweets.length ? (
       tweets.map(tweet => {
         return (
-          <ul className="tweet-list" key={tweet.id}>
+          <ul className="tweet-list" key={tweet._id}>
             <li className="tweet">
               <p> {tweet.content} </p>
             </li>
@@ -36,8 +39,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadTweet: () => {
-      dispatch({ type: "LOAD_TWEET" });
+    loadTweets: tweets => {
+      dispatch(loadTweets(tweets));
     }
   };
 };

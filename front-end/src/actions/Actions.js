@@ -1,5 +1,6 @@
-export const loadTweets = () => {
+export const loadTweets = tweets => {
   return {
-    type: "LOAD_TWEET"
+    type: "LOAD_TWEET",
+    tweets
   };
 };
